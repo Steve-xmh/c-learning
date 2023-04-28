@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.26)
+
+project(c-learning-2022)
+
+add_executable(c-learning-2022-homework0 homework0.c)
+add_executable(c-learning-2022-max max.c)
+add_executable(c-learning-2022-numbertest numbertest.c)
+add_executable(c-learning-2022-sort sort.c)
+add_executable(c-learning-2022-check_is_leap_year check_is_leap_year.c)
+add_executable(c-learning-2022-learn2 learn2.c)
+add_executable(c-learning-2022-learn3 learn3.c)
+add_executable(c-learning-2022-learn4 learn4.c)
+add_executable(c-learning-2022-learn5 learn5.c)
+add_executable(c-learning-2022-learn6 learn6.c)
+add_executable(c-learning-2022-learn7 learn7.c)
+add_executable(c-learning-2022-learn8 learn8.c)
+add_executable(c-learning-2022-learn9 learn9.c)
+add_executable(c-learning-2022-learn10 learn10.c)
