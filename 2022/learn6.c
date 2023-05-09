@@ -87,7 +87,7 @@ int test2()
 	int i;
 	float a[7] = { 2,6,3,8,3,12,9 };
 	for (i = 0; i < 7; i++) printf("%f ", a[i]);
-	printf("\n", a[i]);
+	// printf("\n", a[i]);
 	sort(a, 7); // (6)
 	
 	for (i = 0; i < 7; i++) printf("%f ", a[i]);
