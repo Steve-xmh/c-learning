@@ -14,8 +14,8 @@ HTreeNode *new_node(int weight)
 {
     HTreeNode *node = (HTreeNode *)malloc(sizeof(HTreeNode));
     node->weight = weight;
-    node->left = -1;
-    node->right = -1;
+    node->left = SIZE_MAX;
+    node->right = SIZE_MAX;
     return node;
 }
 
@@ -27,14 +27,14 @@ void free_node(HTreeNode *node)
 size_t get_node_parent(Vector *huffman_tree, size_t node_index)
 {
     if (node_index == SIZE_MAX)
-        return -1;
+        return SIZE_MAX;
     for (size_t i = 0; i < huffman_tree->size; i++)
     {
         HTreeNode *node = (HTreeNode *)huffman_tree->data[i];
         if (node->left == node_index || node->right == node_index)
             return i;
     }
-    return -1;
+    return SIZE_MAX;
 }
 
 size_t get_node_root(Vector *huffman_tree)
@@ -45,7 +45,7 @@ size_t get_node_root(Vector *huffman_tree)
         if (parent == SIZE_MAX)
             return i;
     }
-    return -1;
+    return SIZE_MAX;
 }
 
 void print_huffman_tree(Vector *huffman_tree)
@@ -72,7 +72,7 @@ void print_huffman_tree(Vector *huffman_tree)
         else
             parent++;
 
-        printf("%ld %d %ld %ld %ld\n", i + 1, node->weight, parent, left, right);
+        printf("%ld %d %ld %ld %ld\n", (long)(i + 1), (long)node->weight, (long)parent, (long)left, (long)right);
     }
 }
 
@@ -139,7 +139,7 @@ void print_temp_vector(Vector *v)
     for (size_t i = 0; i < v->size; i++)
     {
         TempNode *node = (TempNode *)v->data[i];
-        printf("(%ld, %d) ", node->index + 1, node->weight);
+        printf("(%ld, %d) ", (long)(node->index + 1), (long)(node->weight));
     }
     printf("\n");
 }
@@ -279,7 +279,7 @@ int main(void)
             char substr[2] = {buf[i], 0};
             size_t code_index = strstr(codes, substr) - codes;
             get_huffman_encode(huffman_tree, code_index, &encode, &encode_len);
-            for (size_t i = 0; i < encode_len; i++)
+            for (size_t j = 0; j < encode_len; j++)
             {
                 if (encode & 1)
                     strcat(result, "1");

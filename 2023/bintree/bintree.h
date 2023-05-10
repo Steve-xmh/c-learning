@@ -10,13 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 因为作业要求不高，所以类型就一个整数就好
-typedef int ElemType;
+// 因为作业要求不高，所以类型就一个基础数据类型就好
+typedef char ElemType;
 
 typedef struct BTreeNode
 {
     ElemType value;
-    int weight;
     struct BTreeNode *left;
     struct BTreeNode *right;
 } BTreeNode;
@@ -25,7 +24,6 @@ BTreeNode *btree_node_new()
 {
     BTreeNode *node = (BTreeNode *)malloc(sizeof(BTreeNode));
     node->value = 0;
-    node->weight = 0;
     node->left = NULL;
     node->right = NULL;
     return node;
@@ -35,7 +33,6 @@ BTreeNode *btree_node_new_v(ElemType v)
 {
     BTreeNode *node = (BTreeNode *)malloc(sizeof(BTreeNode));
     node->value = v;
-    node->weight = 0;
     node->left = NULL;
     node->right = NULL;
     return node;
@@ -45,7 +42,6 @@ BTreeNode *btree_node_new_lr(ElemType v, BTreeNode *left, BTreeNode *right)
 {
     BTreeNode *node = (BTreeNode *)malloc(sizeof(BTreeNode));
     node->value = v;
-    node->weight = 0;
     node->left = left;
     node->right = right;
     return node;
@@ -112,6 +108,40 @@ int btree_node_is_complete(BTreeNode *node)
     return btree_node_is_complete_per_node(node, 0, btree_node_count(node));
 }
 
+size_t btree_get_degree(BTreeNode *node)
+{
+    if (node == NULL)
+        return 0;
+    size_t result = 0;
+    if (node->left != NULL)
+        result++;
+    if (node->right != NULL)
+        result++;
+    return result;
+}
+
+void btree_count_degree_typed(BTreeNode *node, size_t *zero_degree, size_t *one_degree, size_t *two_degree)
+{
+    if (node == NULL)
+        return;
+    switch (btree_get_degree(node))
+    {
+    case 0:
+        (*zero_degree)++;
+        break;
+    case 1:
+        (*one_degree)++;
+        break;
+    case 2:
+        (*two_degree)++;
+        break;
+    default:
+        break;
+    }
+    btree_count_degree_typed(node->left, zero_degree, one_degree, two_degree);
+    btree_count_degree_typed(node->right, zero_degree, one_degree, two_degree);
+}
+
 /**
  * @brief 根据中序遍历和先序遍历构建二叉树
  * 
@@ -138,7 +168,7 @@ BTreeNode *btree_build_node_ldr_dlr_inner(
 {
     if (ldr_start > ldr_end || dlr_start > dlr_end) return NULL;
     
-    size_t mid = -1;
+    size_t mid = SIZE_MAX;
     for (size_t i = ldr_start; i < ldr_end; i++)
     {
         if (ldr_list[i] == dlr_list[dlr_start]) {
@@ -203,7 +233,7 @@ BTreeNode *btree_build_node_ldr_lrd_inner(
 {
     if (ldr_start > ldr_end || lrd_start > lrd_end) return NULL;
     
-    size_t mid = -1;
+    size_t mid = SIZE_MAX;
     for (size_t i = ldr_start; i < ldr_end; i++)
     {
         if (ldr_list[i] == lrd_list[lrd_end]) {
