@@ -271,6 +271,7 @@ int main(void)
         }
         printf("\n");
         char *result = malloc(sizeof(char) * strlen(buf) * longest_encode);
+        result[0] = '\0'; // 比 memset 更方便的方式
         // 编码字符串
         for (size_t i = 0; i < strlen(buf); i++)
         {
