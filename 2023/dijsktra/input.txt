@@ -1,0 +1,18 @@
+3 3
+A B C
+A B 1
+B C 1
+A C 3
+A C
+6 8
+A B C D E F
+A F 100
+A E 30
+A C 10
+B C 5
+C D 50
+E D 20
+E F 60
+D F 10
+A F
+0 0
