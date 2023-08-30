@@ -22,15 +22,15 @@ int main()
     for (int i = 0; i < 10; i++)
     {
         Student *student = &students[i];
-        printf("请输入第 %d 个学生的编号：\n");
+        printf("请输入第 %d 个学生的编号：\n", i);
         scanf("%d", &student->id);
-        printf("请输入第 %d 个学生学生名称：\n");
+        printf("请输入第 %d 个学生学生名称：\n", i);
         scanf("%10s", student->name);
-        printf("请输入第 %d 个学生的语文成绩：\n");
+        printf("请输入第 %d 个学生的语文成绩：\n", i);
         scanf("%d", &student->chinese_score);
-        printf("请输入第 %d 个学生的数学成绩：\n");
+        printf("请输入第 %d 个学生的数学成绩：\n", i);
         scanf("%d", &student->math_score);
-        printf("请输入第 %d 个学生的英语成绩：\n");
+        printf("请输入第 %d 个学生的英语成绩：\n", i);
         scanf("%d", &student->english_score);
         int total_score = student->chinese_score + student->math_score + student->english_score;
         if (total_score > current_maxinum_score)

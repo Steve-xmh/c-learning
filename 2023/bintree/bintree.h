@@ -20,7 +20,7 @@ typedef struct BTreeNode
     struct BTreeNode *right;
 } BTreeNode;
 
-BTreeNode *btree_node_new()
+BTreeNode *btree_node_new(void)
 {
     BTreeNode *node = (BTreeNode *)malloc(sizeof(BTreeNode));
     node->value = 0;
@@ -177,7 +177,7 @@ BTreeNode *btree_build_node_ldr_dlr_inner(
         }
     }
     
-    if (mid == -1) return NULL;
+    if (mid == SIZE_MAX) return NULL;
     
     BTreeNode * node = btree_node_new_v(value_ldr_list[mid]);
     
@@ -242,7 +242,7 @@ BTreeNode *btree_build_node_ldr_lrd_inner(
         }
     }
     
-    if (mid == -1) return NULL;
+    if (mid == SIZE_MAX) return NULL;
     
     BTreeNode * node = btree_node_new_v(value_ldr_list[mid]);
     

@@ -20,7 +20,7 @@ BTreeNode *btree_build_node_dlr(char *data, size_t *index)
     }
 }
 
-int main()
+int main(void)
 {
     char buf[64] = {0};
 

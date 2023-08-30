@@ -9,7 +9,7 @@ typedef struct _CityPath
     struct _CityPath *next;
 } CityPath;
 
-#define FLAG_ACCESSED (0b1)    // 该节点已经被访问
+#define FLAG_ACCESSED (1)    // 该节点已经被访问
 
 typedef struct City
 {
@@ -28,7 +28,7 @@ void free_city_path(CityPath *city_path)
     free(city_path);
 }
 
-int main()
+int main(void)
 {
     int city_amount = 0;
     int path_amount = 0;
